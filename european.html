@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>European Street Food — Street Food Explorer</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ffffff;
+      color: #333;
+    }
+
+    body.dark-theme {
+      background-color: #2a2a2a;
+      color: #f1f1f1;
+    }
+
+    body.dark-theme .site-header,
+    body.dark-theme .site-footer,
+    body.dark-theme .navbar {
+      background-color: #1e1e1e !important;
+    }
+
+    body.dark-theme .recipe {
+      background-color: #2a2a2a;
+      color: #f1f1f1;
+    }
+
+    body.dark-theme .navbar .nav-link,
+    body.dark-theme .navbar-brand {
+      color: #f1f1f1 !important;
+    }
+
+    body.dark-theme .navbar .nav-link:hover {
+      color: #ff9800 !important;
+    }
+
+    body.dark-theme .food-card {
+      background-color: #1e1e1e;
+      color: #f1f1f1;
+    }
+
+    .site-header,
+    .site-footer {
+      background-color: #ffffff;
+    }
+
+    .navbar .nav-link.active {
+      font-weight: bold;
+      color: #ff9800 !important;
+    }
+
+    .hero {
+      position: relative;
+      background-image: url('https://i.ytimg.com/vi/TJxNv7JcoxI/maxresdefault.jpg');
+      background-size: cover;
+      background-position: center;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    h2.mb-4 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .quick-access {
+      margin: 2rem 0;
+    }
+
+    .food-card {
+      margin-bottom: 2rem;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      background-color: #fffaf0;
+      position: relative;
+    }
+
+    .food-card-img-wrapper {
+  width: 100%;          
+  height: 700px;        
+  overflow: hidden;     
+  border-radius: 8px;   
+}
+
+.food-card-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   
+  object-position: center; 
+}
+
+
+    .food-card-content {
+      padding: 1rem 1.5rem 1.5rem;
+    }
+
+    .food-buttons {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .food-buttons button {
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .food-buttons button:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-save {
+      background-color: #198754;
+      color: #fff;
+    }
+
+    .btn-share-fb {
+      background-color: #3b5998;
+      color: #fff;
+    }
+
+    .btn-share-tw {
+      background-color: #1da1f2;
+      color: #fff;
+    }
+
+    .recipe {
+      background: #fff3cd;
+      padding: 1rem;
+      border-radius: 6px;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <nav class="container navbar navbar-expand-lg navbar-light">
+      <a class="navbar-brand" href="index.html">🍜 Street Food Explorer</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="nav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="malaysian.html">Malaysian</a></li>
+          <li class="nav-item"><a class="nav-link" href="american.html">American</a></li>
+          <li class="nav-item"><a class="nav-link active" href="european.html">European</a></li>
+          <li class="nav-item"><a class="nav-link" href="vendors.html">Vendors</a></li>
+          <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>European Street Foods</h1>
+      <p class="lead">Savor the finest street delicacies across Europe.</p>
+      <button id="themeToggle" class="btn btn-sm btn-outline-light mt-2">Toggle Theme</button>
+    </div>
+  </section>
+
+  <main class="container my-5">
+    <h2 class="mb-4">Quick Access</h2>
+    <div class="quick-access">
+      <a href="#1" class="btn btn-warning btn-sm me-2 mb-2">Belgian Waffles</a>
+      <a href="#2" class="btn btn-warning btn-sm me-2 mb-2">Italian Arancini</a>
+      <a href="#3" class="btn btn-warning btn-sm me-2 mb-2">Spanish Churros</a>
+      <a href="#4" class="btn btn-warning btn-sm me-2 mb-2">German Bratwurst</a>
+      <a href="#5" class="btn btn-warning btn-sm me-2 mb-2">French Crepes</a>
+      <a href="#6" class="btn btn-warning btn-sm me-2 mb-2">Greek Souvlaki</a>
+      <a href="#7" class="btn btn-warning btn-sm me-2 mb-2">Portuguese Pastel de Nata</a>
+      <a href="#8" class="btn btn-warning btn-sm me-2 mb-2">Polish Zapiekanka</a>
+      <a href="#9" class="btn btn-warning btn-sm me-2 mb-2">Swedish Cinnamon Bun</a>
+      <a href="#10" class="btn btn-warning btn-sm me-2 mb-2">Hungarian Langos</a>
+    </div>
+
+    
+    <div class="food-card" id="1">
+      <div class="food-buttons">
+        <button class="btn-save"><i class="fas fa-bookmark"></i> Save</button>
+        <button class="btn-share-fb"><i class="fab fa-facebook-f"></i> Share</button>
+        <button class="btn-share-tw"><i class="fab fa-twitter"></i> Tweet</button>
+      </div>
+      <div class="food-card-img-wrapper">
+        <img src="https://pastrieslikeapro.com/wp-content/uploads/2021/02/belgium-waffles.jpg" alt="Belgian Waffle">
+      </div>
+      <div class="food-card-content">
+        <h3>Belgian Waffles</h3>
+        <p>Delightfully crisp outside and tender inside, served with sugar or chocolate.</p>
+        <div class="recipe">
+          <h5>Ingredients:</h5>
+          <ul>
+            <li>2 cups all-purpose flour</li>
+            <li>2 tbsp sugar</li>
+            <li>1 tbsp baking powder</li>
+            <li>1/2 tsp salt</li>
+            <li>2 eggs, separated</li>
+            <li>1 3/4 cups milk</li>
+            <li>1/2 cup melted butter</li>
+          </ul>
+          <h5>Steps:</h5>
+          <ol>
+            <li>Mix flour, sugar, baking powder, and salt.</li>
+            <li>Whisk egg yolks, milk, and melted butter.</li>
+            <li>Fold in egg whites beaten to stiff peaks.</li>
+            <li>Cook in a preheated waffle iron until golden.</li>
+            <li>Top with sugar, chocolate, fruits, or whipped cream.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+
+
+<div class="food-card" id="2">
+  <div class="food-buttons">
+    <button class="btn-save"><i class="fas fa-bookmark"></i> Save</button>
+    <button class="btn-share-fb"><i class="fab fa-facebook-f"></i> Share</button>
+    <button class="btn-share-tw"><i class="fab fa-twitter"></i> Tweet</button>
+  </div>
+  <div class="food-card-img-wrapper">
+    <img src="https://insanelygoodrecipes.com/wp-content/uploads/2024/09/arancini-recipe.jpg" alt="Italian Arancini">
+  </div>
+  <div class="food-card-content">
+    <h3>Italian Arancini</h3>
+    <p>Golden, crispy on the outside and soft, cheesy on the inside, Arancini are Sicilian rice balls stuffed with ragù, mozzarella, or peas.</p>
+    <div class="recipe">
+      <h5>Ingredients:</h5>
+      <ul>
+        <li>2 cups cooked risotto rice</li>
+        <li>1/2 cup mozzarella, cubed</li>
+        <li>1/2 cup peas (optional)</li>
+        <li>1/2 cup cooked meat ragù (optional)</li>
+        <li>2 eggs</li>
+        <li>1 cup breadcrumbs</li>
+        <li>Vegetable oil for frying</li>
+      </ul>
+      <h5>Steps:</h5>
+      <ol>
+        <li>Take a small portion of rice, flatten it in your hand.</li>
+        <li>Place a cube of mozzarella and some ragù/peas in the center.</li>
+        <li>Enclose filling with rice, shaping a ball.</li>
+        <li>Dip in beaten egg, then coat with breadcrumbs.</li>
+        <li>Fry in hot oil until golden brown.</li>
+        <li>Drain on paper towels and serve warm.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+
+<div class="food-card" id="3">
+  <div class="food-buttons">
+    <button class="btn-save"><i class="fas fa-bookmark"></i> Save</button>
+    <button class="btn-share-fb"><i class="fab fa-facebook-f"></i> Share</button>
+    <button class="btn-share-tw"><i class="fab fa-twitter"></i> Tweet</button>
+  </div>
+  <div class="food-card-img-wrapper">
+    <img src="https://www.recipetineats.com/tachyon/2016/08/Churros_9-SQ.jpg" alt="Spanish Churros">
+  </div>
+  <div class="food-card-content">
+    <h3>Spanish Churros</h3>
+    <p>Deep-fried, sugar-coated dough sticks, crunchy outside, soft inside. Served with thick hot chocolate.</p>
+    <div class="recipe">
+      <h5>Ingredients:</h5>
+      <ul>
+        <li>1 cup water</li>
+        <li>2 tbsp sugar</li>
+        <li>1/2 tsp salt</li>
+        <li>2 tbsp vegetable oil</li>
+        <li>1 cup all-purpose flour</li>
+        <li>Oil for frying</li>
+        <li>1/2 cup sugar + 1 tsp cinnamon for coating</li>
+      </ul>
+      <h5>Steps:</h5>
+      <ol>
+        <li>Boil water, sugar, salt, and oil together.</li>
+        <li>Remove from heat, stir in flour until smooth dough forms.</li>
+        <li>Pipe dough into hot oil in 4-6 inch strips.</li>
+        <li>Fry until golden brown.</li>
+        <li>Drain, then roll in cinnamon sugar.</li>
+        <li>Serve with warm chocolate sauce.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+
+<div class="food-card" id="4">
+  <div class="food-buttons">
+    <button class="btn-save"><i class="fas fa-bookmark"></i> Save</button>
+    <button class="btn-share-fb"><i class="fab fa-facebook-f"></i> Share</button>
+    <button class="btn-share-tw"><i class="fab fa-twitter"></i> Tweet</button>
+  </div>
+  <div class="food-card-img-wrapper">
+    <img src="https://www.tastingtable.com/img/gallery/10-regional-varieties-of-german-bratwurst-explained/l-intro-1683306652.jpg" alt="German Bratwurst">
+  </div>
+  <div class="food-card-content">
+    <h3>German Bratwurst</h3>
+    <p>Savory sausage, grilled and served in a bun with mustard or sauerkraut.</p>
+    <div class="recipe">
+      <h5>Ingredients:</h5>
+      <ul>
+        <li>1 lb ground pork</li>
+        <li>1/4 lb veal or beef (optional)</li>
+        <li>1 tsp salt</li>
+        <li>1/2 tsp white pepper</li>
+        <li>1/2 tsp nutmeg</li>
+        <li>1/2 tsp marjoram</li>
+        <li>Sausage casings</li>
+      </ul>
+      <h5>Steps:</h5>
+      <ol>
+        <li>Mix meat with spices thoroughly.</li>
+        <li>Stuff into casings and twist into individual sausages.</li>
+        <li>Grill until cooked through and golden.</li>
+        <li>Serve in a bun with mustard or sauerkraut.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+
+<div class="food-card" id="5">
+  <div class="food-buttons">
+    <button class="btn-save"><i class="fas fa-bookmark"></i> Save</button>
+    <button class="btn-share-fb"><i class="fab fa-facebook-f"></i> Share</button>
+    <button class="btn-share-tw"><i class="fab fa-twitter"></i> Tweet</button>
+  </div>
+  <div class="food-card-img-wrapper">
+    <img src="https://thewanderlustkitchen.com/wp-content/uploads/2022/09/french-crepes-square-1200.jpg" alt="French Crepes">
+  </div>
+  <div class="food-card-content">
+    <h3>French Crepes</h3>
+    <p>Thin pancakes, sweet or savory, filled with Nutella, fruit, ham, or cheese.</p>
+    <div class="recipe">
+      <h5>Ingredients:</h5>
+      <ul>
+        <li>1 cup all-purpose flour</li>
+        <li>2 eggs</li>
+        <li>1/2 cup milk</li>
+        <li>1/2 cup water</li>
+        <li>2 tbsp melted butter</li>
+        <li>Pinch of salt</li>
+      </ul>
+      <h5>Steps:</h5>
+      <ol>
+        <li>Whisk all ingredients until smooth.</li>
+        <li>Heat a non-stick pan and lightly grease.</li>
+        <li>Pour batter thinly, cook 1-2 min per side.</li>
+        <li>Fill with desired toppings and fold elegantly.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+
+<div class="food-card" id="6">
+  <div class="food-buttons">
+    <button class="btn-save"><i class="fas fa-bookmark"></i> Save</button>
+    <button class="btn-share-fb"><i class="fab fa-facebook-f"></i> Share</button>
+    <button class="btn-share-tw"><i class="fab fa-twitter"></i> Tweet</button>
+  </div>
+  <div class="food-card-img-wrapper">
+    <img src="https://www.allrecipes.com/thmb/t9I4JgEI8-TnPcnAHV-RvQFcEFQ=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/14713-souvlaki-ddmfs-Beauty-3x4-06471d380b394255a7716405c4ec0a22.jpg" alt="Greek Souvlaki">
+  </div>
+  <div class="food-card-content">
+    <h3>Greek Souvlaki</h3>
+    <p>Marinated grilled meat on skewers or pita, with tzatziki, tomatoes, and onions.</p>
+    <div class="recipe">
+      <h5>Ingredients:</h5>
+      <ul>
+        <li>1 lb pork or chicken, cubed</li>
+        <li>2 tbsp olive oil</li>
+        <li>2 tbsp lemon juice</li>
+        <li>1 tsp oregano</li>
+        <li>Salt and pepper</li>
+        <li>Pita bread, vegetables, tzatziki for serving</li>
+      </ul>
+      <h5>Steps:</h5>
+      <ol>
+        <li>Marinate meat 2-4 hours.</li>
+        <li>Skewer and grill until cooked through.</li>
+        <li>Serve in pita with vegetables and tzatziki.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+
+<div class="food-card" id="7">
+  <div class="food-buttons">
+    <button class="btn-save"><i class="fas fa-bookmark"></i> Save</button>
+    <button class="btn-share-fb"><i class="fab fa-facebook-f"></i> Share</button>
+    <button class="btn-share-tw"><i class="fab fa-twitter"></i> Tweet</button>
+  </div>
+  <div class="food-card-img-wrapper">
+    <img src="https://www.chainbaker.com/wp-content/uploads/2023/05/IMG_4828.jpg" alt="Portuguese Pastel de Nata">
+  </div>
+  <div class="food-card-content">
+    <h3>Portuguese Pastel de Nata</h3>
+    <p>Creamy egg custard tart in flaky pastry, lightly caramelized on top.</p>
+    <div class="recipe">
+      <h5>Ingredients:</h5>
+      <ul>
+        <li>1 sheet puff pastry</li>
+        <li>1/2 cup sugar</li>
+        <li>2 tbsp cornstarch</li>
+        <li>1/2 cup milk</li>
+        <li>3 egg yolks</li>
+        <li>1 tsp vanilla extract</li>
+      </ul>
+      <h5>Steps:</h5>
+      <ol>
+        <li>Roll pastry into tart molds.</li>
+        <li>Cook milk, sugar, cornstarch until thick.</li>
+        <li>Temper in egg yolks and vanilla.</li>
+        <li>Pour into pastry and bake at high heat until caramelized.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+
+<div class="food-card" id="8">
+  <div class="food-buttons">
+    <button class="btn-save"><i class="fas fa-bookmark"></i> Save</button>
+    <button class="btn-share-fb"><i class="fab fa-facebook-f"></i> Share</button>
+    <button class="btn-share-tw"><i class="fab fa-twitter"></i> Tweet</button>
+  </div>
+  <div class="food-card-img-wrapper">
+    <img src="https://i.ytimg.com/vi/YYnmG0u7Or8/maxresdefault.jpg" alt="Polish Zapiekanka">
+  </div>
+  <div class="food-card-content">
+    <h3>Polish Zapiekanka</h3>
+    <p>Open-faced baguette pizza, toasted with mushrooms, cheese, and ketchup or garlic sauce.</p>
+    <div class="recipe">
+      <h5>Ingredients:</h5>
+      <ul>
+        <li>Baguette slices</li>
+        <li>Butter</li>
+        <li>Mushrooms, sliced</li>
+        <li>Grated cheese</li>
+        <li>Ketchup or garlic sauce</li>
+      </ul>
+      <h5>Steps:</h5>
+      <ol>
+        <li>Toast baguette slices lightly.</li>
+        <li>Sauté mushrooms in butter.</li>
+        <li>Top bread with mushrooms and cheese.</li>
+        <li>Broil until cheese melts.</li>
+        <li>Drizzle with sauce and serve.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+
+<div class="food-card" id="9">
+  <div class="food-buttons">
+    <button class="btn-save"><i class="fas fa-bookmark"></i> Save</button>
+    <button class="btn-share-fb"><i class="fab fa-facebook-f"></i> Share</button>
+    <button class="btn-share-tw"><i class="fab fa-twitter"></i> Tweet</button>
+  </div>
+  <div class="food-card-img-wrapper">
+    <img src="https://scandinaviancookbook.com/wp-content/uploads/2024/04/DSC00493.jpg" alt="Swedish Cinnamon Bun">
+  </div>
+  <div class="food-card-content">
+    <h3>Swedish Cinnamon Bun</h3>
+    <p>Sweet, soft, spiced bun, often with cardamom, topped with pearl sugar.</p>
+    <div class="recipe">
+      <h5>Ingredients:</h5>
+      <ul>
+        <li>3 cups all-purpose flour</li>
+        <li>1/4 cup sugar</li>
+        <li>1 tsp salt</li>
+        <li>2 tsp ground cardamom</li>
+        <li>1 package yeast</li>
+        <li>1/2 cup milk</li>
+        <li>1/4 cup butter</li>
+        <li>Filling: butter, sugar, cinnamon</li>
+      </ul>
+      <h5>Steps:</h5>
+      <ol>
+        <li>Prepare yeast dough with milk, butter, sugar, flour, and cardamom.</li>
+        <li>Roll dough, spread filling, roll and cut into buns.</li>
+        <li>Let rise, then bake until golden.</li>
+        <li>Sprinkle with pearl sugar and serve warm.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="food-card" id="10">
+  <div class="food-buttons">
+    <button class="btn-save"><i class="fas fa-bookmark"></i> Save</button>
+    <button class="btn-share-fb"><i class="fab fa-facebook-f"></i> Share</button>
+    <button class="btn-share-tw"><i class="fab fa-twitter"></i> Tweet</button>
+  </div>
+  <div class="food-card-img-wrapper">
+    <img src="https://www.rockhamptonriverfestival.com.au/files/assets/riverfest/v/1/500x500/2024-food-vendors/hungary-aussie-hungarian-langos.jpg?dimension=pageimage&w=800" alt="Hungarian Langos">
+  </div>
+  <div class="food-card-content">
+    <h3>Hungarian Langos</h3>
+    <p>Deep-fried flatbread topped with sour cream, cheese, or garlic butter.</p>
+    <div class="recipe">
+      <h5>Ingredients:</h5>
+      <ul>
+        <li>3 cups all-purpose flour</li>
+        <li>1 package yeast</li>
+        <li>1 tsp salt</li>
+        <li>1 cup warm water</li>
+        <li>Oil for frying</li>
+        <li>Toppings: sour cream, grated cheese, garlic</li>
+      </ul>
+      <h5>Steps:</h5>
+      <ol>
+        <li>Mix flour, yeast, salt, and warm water into a soft dough.</li>
+        <li>Let rise for 1 hour.</li>
+        <li>Divide, shape into flat discs.</li>
+        <li>Fry in hot oil until golden.</li>
+        <li>Top with sour cream, cheese, or garlic butter.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+
+    <section class="container my-5" id="savedFoodsSection">
+      <h2>Saved European Foods</h2>
+      <div id="savedFoodsList" class="row"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer py-4 text-center">
+    <div class="container">
+      <p>© 2025 Street Food Explorer.</p>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      const theme = localStorage.getItem('theme');
+      if (theme === 'dark') $('body').addClass('dark-theme');
+
+      $('#themeToggle').click(function () {
+        $('body').toggleClass('dark-theme');
+        localStorage.setItem('theme', $('body').hasClass('dark-theme') ? 'dark' : 'light');
+      });
+
+      function renderSavedFoods() {
+        const savedList = $('#savedFoodsList');
+        savedList.empty();
+        const saved = JSON.parse(localStorage.getItem('savedFoods') || '[]');
+        if (saved.length === 0) {
+          savedList.html('<p>No foods saved yet.</p>');
+          return;
+        }
+        saved.forEach(function (title) {
+          const originalCard = $('.food-card').filter(function () {
+            return $(this).find('h3').text() === title;
+          }).first();
+          if (originalCard.length) {
+            const clone = originalCard.clone();
+            clone.find('.food-buttons').remove();
+            clone.addClass('col-md-4');
+            savedList.append(clone);
+          }
+        });
+      }
+
+      $('.food-card').each(function () {
+        const card = $(this);
+        const saveBtn = card.find('.btn-save');
+        const fbBtn = card.find('.btn-share-fb');
+        const twBtn = card.find('.btn-share-tw');
+        const savedFoods = JSON.parse(localStorage.getItem('savedFoods') || '[]');
+        const title = card.find('h3').text();
+        if (savedFoods.includes(title)) {
+          saveBtn.html('<i class="fas fa-check"></i> Saved!').prop('disabled', true);
+        }
+        saveBtn.click(function () {
+          let saved = JSON.parse(localStorage.getItem('savedFoods') || '[]');
+          if (!saved.includes(title)) {
+            saved.push(title);
+            localStorage.setItem('savedFoods', JSON.stringify(saved));
+            saveBtn.html('<i class="fas fa-check"></i> Saved!').prop('disabled', true);
+            alert(`"${title}" has been saved!`);
+            renderSavedFoods();
+          }
+        });
+
+        fbBtn.click(function () {
+          const url = location.href.startsWith('file://') ? 'https://yourwebsite.com/european.html' : location.href;
+          const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+          window.open(shareUrl, '_blank');
+        });
+
+        twBtn.click(function () {
+          const url = location.href.startsWith('file://') ? 'https://yourwebsite.com/european.html' : location.href;
+          const text = encodeURIComponent(card.find('h3').text());
+          const shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${text}`;
+          window.open(shareUrl, '_blank');
+        });
+      });
+
+      renderSavedFoods();
+    });
+  </script>
+
+</body>
+
+</html>
