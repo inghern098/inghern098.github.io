@@ -1,0 +1,304 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Street Food Vendors — Street Food Explorer</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .vendor-card { transition: all 0.3s ease; }
+    .vendor-card:hover { transform: translateY(-5px); }
+    .rating { color: var(--accent); font-weight: bold; }
+    .filter-btn { margin: 0 5px 5px 0; }
+  </style>
+</head>
+<body>
+<header class="site-header">
+  <nav class="container navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="index.html">🍜 Street Food Explorer</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
+    <div id="nav" class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="malaysian.html">Malaysian</a></li>
+        <li class="nav-item"><a class="nav-link" href="american.html">American</a></li>
+        <li class="nav-item"><a class="nav-link" href="european.html">European</a></li>
+        <li class="nav-item"><a class="nav-link active" href="vendors.html">Vendors</a></li>
+        <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<section class="hero" style="background-image:url('https://images.unsplash.com/photo-1498654896293-37aacf113fd9?w=1400&q=80')">
+  <div class="container">
+    <h1>Street Food Vendors</h1>
+    <p class="lead" style="color:rgba(255,255,255,0.95)">Discover the best street food vendors across the globe</p>
+    <div class="mt-3"><button id="themeToggle" class="btn btn-sm btn-outline-light">Toggle Theme</button></div>
+  </div>
+</section>
+
+<main class="container my-5">
+  <div class="section-title">
+    <h2>Vendor Directory</h2>
+    <div>
+      <input id="vendorFilter" class="form-control form-control-sm" placeholder="Search vendors..." style="max-width:240px;display:inline-block">
+    </div>
+  </div>
+  
+  <div class="mb-4">
+    <h4>Filter by Region:</h4>
+    <div>
+      <button class="btn btn-sm btn-outline-secondary filter-btn" data-region="all">All</button>
+      <button class="btn btn-sm btn-outline-secondary filter-btn" data-region="Malaysia">Malaysia</button>
+      <button class="btn btn-sm btn-outline-secondary filter-btn" data-region="America">America</button>
+      <button class="btn btn-sm btn-outline-secondary filter-btn" data-region="Europe">Europe</button>
+    </div>
+  </div>
+  
+  <div id="vendorsGrid" class="cards-grid"></div>
+  
+  <div class="mt-5">
+    <h3>Vendor Map</h3>
+    <div class="map-placeholder">
+      <i class="fas fa-map-marker-alt me-2"></i> Interactive Vendor Locations Map
+    </div>
+    <p class="text-muted small mt-2">Vendor locations are stored in localStorage for demonstration purposes.</p>
+  </div>
+</main>
+
+<footer class="site-footer py-4 text-center">
+  <div class="container">
+    <p>© 2025 Street Food Explorer.</p>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+<script>
+// Vendor data - in a real application, this would come from a database
+const vendorData = [
+  // --- American Vendors ---
+  {
+    id: 1,
+    name: "Big Apple Dogs",
+    region: "America",
+    specialty: "New York Style Hot Dogs",
+    rating: 4.8,
+    image: "img/BigAppleDog.jpg",
+    location: "New York City, USA",
+    description: "Serving authentic NYC street hot dogs since 1985. Our secret family recipe for chili topping has been passed down for generations."
+  },
+  {
+    id: 2,
+    name: "Lone Star Smokehouse",
+    region: "America",
+    specialty: "Texas BBQ",
+    rating: 4.9,
+    image: "img/Smokehouse.jpg",
+    location: "Austin, Texas",
+    description: "Authentic Texas-style barbecue with slow-smoked brisket, ribs, and homemade sauces. Voted best BBQ in Austin 3 years running."
+  },
+  {
+    id: 3,
+    name: "California Fusion Tacos",
+    region: "America",
+    specialty: "Gourmet Fusion Tacos",
+    rating: 4.7,
+    image: "img/Tacos.jpg",
+    location: "Los Angeles, California",
+    description: "Innovative taco combinations with fresh, local ingredients. A food truck favorite featured on Food Network's 'The Best Thing I Ever Ate'."
+  },
+  {
+    id: 6,
+    name: "Philly Steaks",
+    region: "America",
+    specialty: "Philly Cheesesteak",
+    rating: 4.6,
+    image: "img/PhillySteaksVendor.jpg",
+    location: "Philadelphia, Pennsylvania",
+    description: "Classic cheesesteaks with thinly sliced beef, grilled onions, and melted cheese on a hoagie roll."
+  },
+
+  // --- Malaysian Vendors ---
+  {
+    id: 4,
+    name: "Satay King",
+    region: "Malaysia",
+    specialty: "Malaysian Satay",
+    rating: 4.9,
+    image: "img/SatayKing.jpg",
+    location: "Kuala Lumpur, Malaysia",
+    description: "Family-run satay stall serving perfectly grilled skewers with homemade peanut sauce for over 30 years."
+  },
+  {
+    id: 7,
+    name: "Penang Char Kway Teow",
+    region: "Malaysia",
+    specialty: "Char Kway Teow",
+    rating: 4.8,
+    image: "img/CharKueyTeowVendor.jpg",
+    location: "Penang, Malaysia",
+    description: "Famous for smoky wok hei noodles with prawns, cockles, and bean sprouts. A must-try Penang street food."
+  },
+  {
+    id: 8,
+    name: "Nasi Lemak Express",
+    region: "Malaysia",
+    specialty: "Nasi Lemak",
+    rating: 4.7,
+    image: "img/NasiLemakVendor.jpg",
+    location: "Selangor, Malaysia",
+    description: "Fragrant coconut rice served with sambal, fried anchovies, peanuts, cucumber, and a choice of rendang or fried chicken."
+  },
+  {
+    id: 9,
+    name: "KL Roti Canai House",
+    region: "Malaysia",
+    specialty: "Roti Canai",
+    rating: 4.5,
+    image: "img/RotiCanaiVendor.jpg",
+    location: "Kuala Lumpur, Malaysia",
+    description: "Serving crispy and fluffy roti canai with dhal curry and teh tarik on the side."
+  },
+
+  // --- European Vendors ---
+  {
+    id: 5,
+    name: "Paris Crepes",
+    region: "Europe",
+    specialty: "French Crepes",
+    rating: 4.6,
+    image: "img/ParisCrepes.jpg",
+    location: "Paris, France",
+    description: "Authentic Parisian street crepes with both sweet and savory fillings. A favorite near the Eiffel Tower since 2005."
+  },
+  {
+    id: 10,
+    name: "Berlin Currywurst",
+    region: "Europe",
+    specialty: "Currywurst",
+    rating: 4.7,
+    image: "img/BerlinCurrywurstVendor.jpg",
+    location: "Berlin, Germany",
+    description: "Iconic German street food of sliced sausage with curry ketchup, served with fries."
+  },
+  {
+    id: 11,
+    name: "Rome Pizza al Taglio",
+    region: "Europe",
+    specialty: "Roman Pizza by the Slice",
+    rating: 4.8,
+    image: "img/RomeVendor.jpg",
+    location: "Rome, Italy",
+    description: "Crispy rectangular pizzas baked in trays and sold by weight, with a variety of toppings."
+  },
+  {
+    id: 12,
+    name: "Madrid Churros",
+    region: "Europe",
+    specialty: "Churros con Chocolate",
+    rating: 4.6,
+    image: "img/MadridChurrosVendor.jpg",
+    location: "Madrid, Spain",
+    description: "Crispy fried churros served with thick hot chocolate for dipping, a Spanish street food classic."
+  }
+];
+
+$(function(){
+  // Theme toggle
+  const themeCookie = document.cookie.match('(^|;)\\s*sfe-theme\\s*=\\s*([^;]+)')?.pop();
+  if(themeCookie === 'dark') $('body').addClass('dark-theme');
+  
+  $('#themeToggle').on('click', function(){
+    $('body').toggleClass('dark-theme');
+    document.cookie = `sfe-theme=${$('body').hasClass('dark-theme') ? 'dark' : 'light'}; max-age=${14*24*60*60}; path=/`;
+  });
+
+  // Render vendors
+  function renderVendors(vendors) {
+    $('#vendorsGrid').empty();
+    
+    if (vendors.length === 0) {
+      $('#vendorsGrid').html('<div class="text-center py-4"><p>No vendors found matching your criteria.</p></div>');
+      return;
+    }
+    
+    vendors.forEach(vendor => {
+      $('#vendorsGrid').append(`
+        <div class="card vendor-card" data-region="${vendor.region}">
+          <img src="${vendor.image}" alt="${vendor.name}">
+          <div class="p-3">
+            <h4>${vendor.name}</h4>
+            <div class="rating">${vendor.rating} ★</div>
+            <p class="mb-1"><strong>Specialty:</strong> ${vendor.specialty}</p>
+            <p class="mb-1"><strong>Location:</strong> ${vendor.location}</p>
+            <p class="small">${vendor.description}</p>
+            <button class="btn btn-sm btn-accent save-vendor" data-id="${vendor.id}">Save Vendor</button>
+          </div>
+        </div>
+      `);
+    });
+  }
+
+  // Initial render
+  renderVendors(vendorData);
+
+  // Filter functionality
+  $('.filter-btn').on('click', function() {
+    const region = $(this).data('region');
+    $('.filter-btn').removeClass('active');
+    $(this).addClass('active');
+    
+    if (region === 'all') {
+      renderVendors(vendorData);
+    } else {
+      const filteredVendors = vendorData.filter(vendor => vendor.region === region);
+      renderVendors(filteredVendors);
+    }
+  });
+
+  // Search functionality + sessionStorage tracking
+  $('#vendorFilter').on('keyup', function() {
+    const searchTerm = $(this).val().toLowerCase();
+    const filteredVendors = vendorData.filter(vendor => 
+      vendor.name.toLowerCase().includes(searchTerm) || 
+      vendor.specialty.toLowerCase().includes(searchTerm) ||
+      vendor.location.toLowerCase().includes(searchTerm)
+    );
+    renderVendors(filteredVendors);
+
+    // NEW: Track searches with sessionStorage
+    let searchCount = sessionStorage.getItem('searchCount') || 0;
+    searchCount++;
+    sessionStorage.setItem('searchCount', searchCount);
+    console.log("Searches this session: " + searchCount);
+  });
+
+  // Save vendor to localStorage
+  $(document).on('click', '.save-vendor', function() {
+    const vendorId = $(this).data('id');
+    const vendor = vendorData.find(v => v.id === vendorId);
+    
+    let savedVendors = JSON.parse(localStorage.getItem('savedVendors') || '[]');
+    
+    if (!savedVendors.find(v => v.id === vendorId)) {
+      savedVendors.push(vendor);
+      localStorage.setItem('savedVendors', JSON.stringify(savedVendors));
+      alert(`${vendor.name} has been saved to your favorites!`);
+    } else {
+      alert(`${vendor.name} is already in your saved vendors!`);
+    }
+  });
+
+  // Set initial filter button state
+  $('.filter-btn[data-region="all"]').addClass('active');
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Street Food Events — Explore Events With Street Foods</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+     .card {
+     display: flex;
+     flex-direction: column;
+     height: 100%;
+     transition: transform 0.2s, box-shadow 0.2s; 
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+    }
+
+    .card-buttons {
+      display: flex;
+      gap: 8px;
+      margin-top: auto;
+      justify-content: center;
+      padding-bottom: 12px;
+    }
+
+    .card-buttons button {
+      flex: none;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      padding: 6px 8px;
+      border-radius: 6px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    body.dark-theme {
+      background-color: #121212;
+      color: #f1f1f1;
+    }
+
+    body.dark-theme .site-header,
+    body.dark-theme .site-footer,
+    body.dark-theme .navbar {
+      background-color: #1e1e1e !important;
+    }
+
+    body.dark-theme .navbar .nav-link,
+    body.dark-theme .navbar-brand {
+      color: #f1f1f1 !important;
+    }
+
+    body.dark-theme .navbar .nav-link:hover {
+      color: #ff9800 !important;
+    }
+
+    body.dark-theme .card {
+      background-color: #fff;
+      color: #000;
+    }
+
+    body.dark-theme .btn-outline-light {
+      border-color: #f1f1f1;
+      color: #f1f1f1;
+    }
+
+    .hero {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  text-align: center;      
+}
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+    }
+
+    .hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+    h2.mb-4 {
+      margin-bottom: 2rem;
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <nav class="container navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="index.html">🍜 Street Food Explorer</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="nav" class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="malaysian.html">Malaysian</a></li>
+        <li class="nav-item"><a class="nav-link" href="american.html">American</a></li>
+        <li class="nav-item"><a class="nav-link" href="european.html">European</a></li>
+        <li class="nav-item"><a class="nav-link active" href="vendors.html">Vendors</a></li>
+        <li class="nav-item"><a class="nav-link" href="events.html">Events</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<section class="hero" style="background-image:url('https://i1.wp.com/malaiadventure.com/malai/wp-content/uploads/2018/01/KL-street-food.jpg?fit=2000%2C1331&quality=60&strip=all&ssl=1')">
+  <div class="container">
+    <h1>Street Food Events</h1>
+    <p class="lead">Explore festivals, night markets, and pop-up food experiences in Europe, America, and Malaysia.</p>
+    <div class="mt-3">
+      <button id="themeToggle" class="btn btn-sm btn-outline-light">Toggle Theme</button>
+    </div>
+  </div>
+</section>
+
+<main class="container my-5">
+  <h2 class="mb-4">Street Food Events (Europe, America & Malaysia)</h2>
+
+  <div class="cards-grid">
+
+    <div class="card">
+  <img src="https://media.nbcchicago.com/2020/11/taste-chicago.png?resize=1200%2C675&quality=85&strip=all" alt="Taste of Chicago">
+  <div style="padding:12px">
+    <h4>Taste of Chicago</h4>
+    <p>Chicago, USA</p>
+    <p>Sample the best local street foods in Chicago's vibrant festival.</p>
+    <p><strong>Happens in July</strong></p>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://www.amny.com/wp-content/uploads/2025/04/2179833773.jpg?quality=51&w=1200" alt="NYC Wine & Food Festival">
+  <div style="padding:12px">
+    <h4>NYC Wine & Food Festival</h4>
+    <p>New York, USA</p>
+    <p>Discover street eats and drinks from top chefs across the city.</p>
+    <p><strong>Happens in October</strong></p>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://hedonistshedonist.com/wp-content/uploads/2016/05/unspecified-3.jpeg" alt="Los Angeles Street Food Festival">
+  <div style="padding:12px">
+    <h4>Los Angeles Street Food Festival</h4>
+    <p>Los Angeles, USA</p>
+    <p>Enjoy diverse food trucks and gourmet street food delights.</p>
+    <p><strong>Happens in June</strong></p>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,h_800,q_75,w_1200/v1/clients/austin/Austin_Food_Wine_Festival_2023_Credit_to_Dusana_Risovic_Exp_July_2027_15__d85035d3-e009-41da-a00f-0839ad2c4279.jpg" alt="Austin Food & Wine Festival">
+  <div style="padding:12px">
+    <h4>Austin Food & Wine Festival</h4>
+    <p>Austin, USA</p>
+    <p>Taste the best street-inspired dishes and local wines.</p>
+    <p><strong>Happens in April</strong></p>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://ca-times.brightspotcdn.com/dims4/default/c57a092/2147483647/strip/false/crop/3613x2409+0+0/resize/1486x991!/quality/75/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2F28%2F78%2Fd93235174bc7b4ae9127acb36f33%2F500710-fo-0301-smorgasburg-mrt-004.JPG" alt="Smorgasburg">
+  <div style="padding:12px">
+    <h4>Smorgasburg</h4>
+    <p>Brooklyn, USA</p>
+    <p>Open-air food market featuring local vendors and food trucks.</p>
+    <p><strong>April - October (Sundays)</strong></p>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://images.squarespace-cdn.com/content/v1/5a05f608f09ca4894e04ca8f/1515343483506-NQ2TIQ9DUI9JLIUZ683U/37004633115_98285ef198_z.jpg" alt="Notting Hill Carnival Street Food">
+  <div style="padding:12px">
+    <h4>Notting Hill Carnival Street Food</h4>
+    <p>London, UK</p>
+    <p>Celebrate Caribbean flavors at one of Europe's biggest street festivals.</p>
+    <p><strong>Happens on August Bank Holiday</strong></p>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW8ErnIpv8TYG1_fcscg08fm2VpIqBDbSUzg&s" alt="La Tomatina Food Stalls">
+  <div style="padding:12px">
+    <h4>La Tomatina Food Stalls</h4>
+    <p>Buñol, Spain</p>
+    <p>Street food vendors serve local tapas and treats during the tomato fight festival.</p>
+    <p><strong>Happens last Wednesday of August</strong></p>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://thumbs.dreamstime.com/b/flagday-scheveningen-14711283.jpg" alt="Herring Festival">
+  <div style="padding:12px">
+    <h4>Herring Festival</h4>
+    <p>Hvide Sande, Denmark</p>
+    <p>Enjoy fresh herring dishes and local street food specialties.</p>
+    <p><strong>Happens in April</strong></p>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://i.ytimg.com/vi/FKsDUWW2d8Q/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLA4Gb_lAepyo-BYGoezLE0rmELG8w" alt="Street Food Circus Cardiff">
+  <div style="padding:12px">
+    <h4>Street Food Circus</h4>
+    <p>Cardiff, Wales</p>
+    <p>Sample street food from across Europe in a vibrant summer festival.</p>
+    <p><strong>Happens during Summer months</strong></p>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://static.wixstatic.com/media/abeb5f_d799593a977b4a848eac6523beb1b995~mv2.jpeg/v1/fill/w_640,h_480,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/abeb5f_d799593a977b4a848eac6523beb1b995~mv2.jpeg" alt="Street Food Festival Zurich">
+  <div style="padding:12px">
+    <h4>Street Food Festival Zurich</h4>
+    <p>Zurich, Switzerland</p>
+    <p>Discover gourmet street food from local and international chefs.</p>
+    <p><strong>Happens in July</strong></p>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://www.borneoecotours.com/images/cache/tours/gallery/kota-kinabalu/others/night-market-01-1800x1200.webp" alt="Sabah Food Festival">
+  <div style="padding:12px">
+    <h4>Sabah Food Festival</h4>
+    <p>Kota Kinabalu, Malaysia</p>
+    <p>Street food market highlighting local specialties and tropical flavors.</p>
+    <p><strong>Happens in July</strong></p>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://sethlui.com/wp-content/uploads/2022/07/image-3-800x533.jpg" alt="Penang Street Food Festival">
+  <div style="padding:12px">
+    <h4>Penang Street Food Festival</h4>
+    <p>Penang, Malaysia</p>
+    <p>Enjoy Penang's famous hawker cuisine at this lively festival.</p>
+    <p><strong>Happens in December</strong></p>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://media.freemalaysiatoday.com/wp-content/uploads/2021/12/foodtruck.jpg" alt="Kuala Lumpur Food Truck Fiesta">
+  <div style="padding:12px">
+    <h4>Kuala Lumpur Food Truck Festival</h4>
+    <p>Kuala Lumpur, Malaysia</p>
+    <p>Local food trucks and street vendors gather for a weekend of tasting.</p>
+    <p><strong>Happens in November</strong></p>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://product-image.globaltix.com/live-gtImage/8f2fc0f6-5890-41e4-aae1-6ca4c43cf0e7" alt="George Town Festival – Street Food Program">
+  <div style="padding:12px">
+    <h4>George Town Festival</h4>
+    <p>Penang, Malaysia</p>
+    <p>Street food program featuring local delicacies and cultural foods.</p>
+    <p><strong>Happens in August</strong></p>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://thebackpackingfamily.com/wp-content/uploads/2022/09/20220520_190049.jpg" alt="Malacca Food Festival">
+  <div style="padding:12px">
+    <h4>Malacca Night Market</h4>
+    <p>Malacca, Malaysia</p>
+    <p>Explore local street food favorites in the historical city center of Malacca.</p>
+    <p><strong>Happens Weekly</strong></p>
+  </div>
+</div>
+
+<div class="card">
+  <img src="https://mytrip.my/wp-content/uploads/2025/08/Top-10-Street-Foods-in-Ipoh-1-768x419.png" alt="Ipoh Street Food Carnival">
+  <div style="padding:12px">
+    <h4>Ipoh Night Market</h4>
+    <p>Ipoh, Malaysia</p>
+    <p>Sample traditional Malaysian street food every week with a twist of Ipoh's style.</p>
+    <p><strong>Happens Weekly</strong></p>
+  </div>
+</div>
+
+  </div>
+</main>
+
+<section class="container my-5" id="savedEventsSection">
+  <h2>Saved Events</h2>
+  <div id="savedEventsList" class="cards-grid"></div>
+</section>
+
+<footer class="site-footer py-4 text-center">
+  <div class="container">
+    <p>© 2025 Street Food Explorer.</p>
+  </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+$(document).ready(function() {
+
+  var theme = localStorage.getItem('theme');
+
+  if (theme === 'dark') {
+    $('body').addClass('dark-theme');
+  }
+
+  $('#themeToggle').click(function() {
+    $('body').toggleClass('dark-theme');
+    var currentTheme = $('body').hasClass('dark-theme') ? 'dark' : 'light';
+    localStorage.setItem('theme', currentTheme);
+  });
+
+  $('.card').each(function() {
+    var card = $(this);
+
+    if (card.find('.card-buttons').length === 0) {
+      var btnDiv = $('<div class="card-buttons"></div>');
+
+      var saveBtn = $('<button class="btn btn-sm btn-outline-success"><i class="fas fa-bookmark"></i> Save</button>');
+      var fbBtn = $('<button class="btn btn-sm btn-outline-primary"><i class="fab fa-facebook-f"></i> Share</button>');
+      var twBtn = $('<button class="btn btn-sm btn-outline-info"><i class="fab fa-twitter"></i> Tweet</button>');
+
+      btnDiv.append(saveBtn, fbBtn, twBtn);
+      card.append(btnDiv);
+
+      saveBtn.click(function(event) {
+        event.stopPropagation();
+        var eventTitle = card.find('h4').text();
+
+        $.ajax({
+          url: 'https://jsonplaceholder.typicode.com/posts',
+          method: 'POST',
+          data: JSON.stringify({ title: eventTitle }),
+          contentType: 'application/json',
+          success: function() {
+            var saved = JSON.parse(localStorage.getItem('savedEvents') || '[]');
+
+            if (!saved.includes(eventTitle)) {
+              saved.push(eventTitle);
+              localStorage.setItem('savedEvents', JSON.stringify(saved));
+
+              saveBtn.html('<i class="fas fa-check"></i> Saved!');
+              saveBtn.removeClass('btn-outline-success').addClass('btn-success').prop('disabled', true);
+
+              alert('"' + eventTitle + '" has been saved!');
+              renderSavedEvents();
+            }
+          },
+          error: function() {
+            alert('Failed to save event.');
+          }
+        });
+      });
+
+      fbBtn.click(function() {
+        var shareURL = location.href.startsWith('file://') ? 'https://yourwebsite.com' : location.href;
+        window.open('https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent(shareURL));
+      });
+
+      twBtn.click(function() {
+        window.open('https://twitter.com/intent/tweet?url=' + encodeURIComponent(location.href) + '&text=' + encodeURIComponent(card.find('h4').text()));
+      });
+    }
+  });
+
+  function renderSavedEvents() {
+    var savedList = $('#savedEventsList');
+    savedList.empty();
+
+    var saved = JSON.parse(localStorage.getItem('savedEvents') || '[]');
+
+    if (saved.length === 0) {
+      savedList.html('<p>No events saved yet.</p>');
+      return;
+    }
+
+    saved.forEach(function(title) {
+      var originalCard = $('.card').filter(function() {
+        return $(this).find('h4').text() === title;
+      }).first();
+
+      if (originalCard.length) {
+        var clone = originalCard.clone();
+        clone.find('.card-buttons').remove();
+        savedList.append(clone);
+      }
+    });
+  }
+
+  renderSavedEvents();
+});
+</script>
+
+</body>
+</html>
